@@ -47,6 +47,12 @@ void KalmanFilter::init(const Eigen::VectorXd& x0) {
     initialized = true;
 }
 
+void KalmanFilter::init() {
+    x_hat.setZero();
+    P = P0;
+    initialized = true;
+}
+
 
 void KalmanFilter::predict(const Eigen::VectorXd& u) {
 

@@ -28,7 +28,7 @@ public:
     Eigen::VectorXd state() { return x_hat; };
 
 private:
-    Eigen::MatrixXd A, B, H, Q, P0, R;
+    Eigen::MatrixXd A, B, H, Q, P, P0, R, K;
 
     // dims
     int m, n, l;

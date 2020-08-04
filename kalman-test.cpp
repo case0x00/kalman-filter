@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
     B << 0, 0, 0;
     H << 1, 0, 0;
 
-    Q << .05, .05, .0, .05, .0, .0, .0, .0;
+    Q << .05, .05, .0, .05, .05, .0, .0, .0, .0;
     P << .1, .1, .1, .1, 10000, 10, .1, 10, 100;
     R << 5;
 
@@ -54,14 +54,14 @@ int main(int argc, char* argv[]) {
 
     double t = 0;
     Eigen::VectorXd z_k(m), u(l);
-    std::cout < "t = " << t << ", " << "x_hat[0]: " << kf.state().transpose() << std::endl;
-    for(int i=0, i<measurements.size(); i++) {
+    std::cout << "t = " << t << ", " << "x_hat[0]: " << kf.state().transpose() << std::endl;
+    for(int i=0; i<measurements.size(); i++) {
         t += dt;
         z_k << measurements[i];
         u << 0;
         kf.predict(u);
         kf.update(z_k);
-        std::cout << "t = " << t << ", " << "y[" << i << "] = " << y.transpose() << ", x_hat[" << i << "] = " << kf.state().transpose() << std::endl;
+        std::cout << "t = " << t << ", " << "z_k[" << i << "] = " << z_k.transpose() << ", x_hat[" << i << "] = " << kf.state().transpose() << std::endl;
     }
     return 0;
 }
