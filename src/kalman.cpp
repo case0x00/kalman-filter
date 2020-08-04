@@ -3,34 +3,10 @@
 
 #include "kalman.hpp"
 
-/*
- * X = A x_{k-1} + B u_{k-1}
- * p = APA^T + Q
- *
- * K = p H^T (HpH^T + R)^{-1}
- * x_k = X + K(z-HX)
- * P x_k = (I-KH)p
- *
- * X state variable
- * u action
- * P covariance matrix of confidence
- * Q covariance matrix of noise
- * K update matrix 
- * H sensor matrix
- * R confidence
- * z measurements
- * I identity
- * A model
- * B model
- *
- *
- *
- */
-
 KalmanFilter::KalmanFilter(
         const Eigen::MatrixXd& A, // relates state at k-1 to k
         const Eigen::MatrixXd& B, // relates optimal control input to x
-        const Eigen::MatrixXd& H, // relates state to measurement z_k
+        const Eigen::MatrixXd& H, // relates state to measurement z
         const Eigen::MatrixXd& Q, // process noise covariance
         const Eigen::MatrixXd& P,
         const Eigen::MatrixXd& R) // measurement noise covariance
@@ -68,12 +44,12 @@ void KalmanFilter::predict(const Eigen::VectorXd& u) {
 
 }
 
-void KalmanFilter::update(const Eigen::VectorXd& z_k) {
+void KalmanFilter::update(const Eigen::VectorXd& z) {
 
     // compute kalman gain K
     K = P * H.transpose() * (H*P*H.transpose() + R).inverse();
     // measure process and generate an a posteriori state
-    x_hat = x_hat + K*(z_k - H * x_hat);
+    x_hat = x_hat + K*(z - H * x_hat);
     // obtain an a posteriori error covariance
     P = (I - K * H) * P;
 

@@ -22,7 +22,7 @@ public:
     void predict(const Eigen::VectorXd& u);
 
     // update estimated state (measurement update)
-    void update(const Eigen::VectorXd& z_k);
+    void update(const Eigen::VectorXd& z);
 
     // return current state
     Eigen::VectorXd state() { return x_hat; };

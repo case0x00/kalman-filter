@@ -5,3 +5,7 @@ mkdir build
 cd build
 cmake ..
 make -j4
+
+if [ $? -eq 0 ]; then
+    ./kalman-test
+fi
