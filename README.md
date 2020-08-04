@@ -74,3 +74,4 @@ t = 2.25, z_44 = -0.704914, x_hat_44 = -0.526583
 ## todo
 * better worked example with actual data
 * EKF, UKF
+* dont assume A or H to be constant (dynamically update)
