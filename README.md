@@ -6,13 +6,13 @@ It works like so.
 
 <p align="center"><img src="https://raw.githubusercontent.com/onlycase/kalman-filter/master/assets/diagram.png"/></p>
 
-## requirements
+## dependencies
 
 Eigen
 
 ## to run
 ```
-./build.sh
+./run.sh
 ```
 
 with expected output
@@ -70,6 +70,7 @@ t = 2.25, z_44 = -0.704914, x_hat_44 = -0.526583
 
 ## good resources
 * https://courses.cs.washington.edu/courses/cse571/03wi/notes/welch-bishop-tutorial.pdf
+
 
 ## todo
 * better worked example with actual data
