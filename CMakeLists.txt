@@ -5,6 +5,6 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 find_package(Eigen3 REQUIRED)
 
-set(SOURCE_FILES src/kalman.cpp kalman-test.cpp)
-add_executable(kalman-test ${SOURCE_FILES})
-target_link_libraries(kalman-test Eigen3::Eigen)
+set(SOURCE_FILES src/kalman.cpp src/main.cpp)
+add_executable(kalmanfilter ${SOURCE_FILES})
+target_link_libraries(kalmanfilter Eigen3::Eigen)

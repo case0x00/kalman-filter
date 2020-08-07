@@ -7,5 +7,5 @@ cmake ..
 make -j4
 
 if [ $? -eq 0 ]; then
-    ./kalman-test
+    ./kalmanfilter
 fi
