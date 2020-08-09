@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "kalman.hpp"
+#include "kalman.h"
 
 KalmanFilter::KalmanFilter(
         const Eigen::MatrixXd& A, // relates state at k-1 to k

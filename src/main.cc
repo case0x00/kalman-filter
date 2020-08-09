@@ -2,7 +2,7 @@
 #include <vector>
 #include <Eigen/Dense>
 
-#include "kalman.hpp"
+#include "kalman.h"
 
 int main(int argc, char* argv[]) {
     int n = 3; // states
