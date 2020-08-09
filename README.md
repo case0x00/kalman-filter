@@ -11,6 +11,21 @@ It works like so.
 Eigen
 
 ## to run
+
+to purely build
+
+```
+./run.sh --build
+```
+
+to purely run
+
+```
+./run.sh --run
+```
+
+and to do both
+
 ```
 ./run.sh
 ```

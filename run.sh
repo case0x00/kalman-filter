@@ -1,11 +1,18 @@
 #!/bin/bash
 
-rm -rf build/
-mkdir build
-cd build
-cmake ..
-make -j4
+build(){
+    rm -rf build/
+    mkdir build
+    cd build
+    cmake ..
+    make -j4
+}
 
-if [ $? -eq 0 ]; then
+if [[ $1 == "--build" ]]; then
+    build
+elif [[ $1 == "--run" ]]; then
+    ./build/kalmanfilter
+else
+    build
     ./kalmanfilter
 fi

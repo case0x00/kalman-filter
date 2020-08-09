@@ -7,4 +7,5 @@ find_package(Eigen3 REQUIRED)
 
 set(SOURCE_FILES src/kalman.cpp src/main.cpp)
 add_executable(kalmanfilter ${SOURCE_FILES})
+target_include_directories(kalmanfilter PRIVATE include)
 target_link_libraries(kalmanfilter Eigen3::Eigen)
