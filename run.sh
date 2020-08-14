@@ -11,7 +11,7 @@ build(){
 if [[ $1 == "--build" ]]; then
     build
 elif [[ $1 == "--run" ]]; then
-    ./build/kalmanfilter
+    ./build/kalmanfilter | python3 ./tests/main.py
 else
     build
     ./kalmanfilter
