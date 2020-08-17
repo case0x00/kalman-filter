@@ -1,4 +1,3 @@
-import math
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
@@ -6,17 +5,11 @@ import os
 
 if __name__ == "__main__":
 
-#    DUR = 200 
-#    NUMCYC=2
-    
     DUR = int(os.environ["DUR"])
     NUMCYC = int(os.environ["NUMCYC"])
-#    DUR = 400
-#    NUMCYC=4
     
     measurement = []
     groundtruth = []
-
     t = np.arange(DUR)
 
     y = lambda x : 2*np.sin(2*np.pi*NUMCYC*x/DUR)+4
@@ -38,7 +31,6 @@ if __name__ == "__main__":
         for j in range(len(measurement)):
             print(measurement[j])
         
-
 #    plt.scatter(t, measurement, marker="x")
 #    plt.plot(t, groundtruth, "r")
 #    plt.show()

@@ -14,8 +14,8 @@ Kalman filters consist of two parts: predicting and updating. In the prediction 
 The duration the filter was tested over was arbitrary, as was the characteristics of the waveform. Duration and the number of cycles over the duration are set by environment variables `DUR` and `NUMCYC` by exporting them, for example
 
 ```
-export DUR=400`
-export NUMCYC=4 
+export DUR=300
+export NUMCYC=1
 ```
 
 The sinusoidal wave was generated according to the equation below, in `tests/gen.py`. 
@@ -26,12 +26,12 @@ y = lambda x : 2 * np.sin(2 * np.sin * NUMCYC * x / DUR) + 4
 
 Example results are shown below, with more in the `plots/` directory. Both bound and unbounded are produced for each run. It doesn't perfectly estimate the state as evident of the deviation from the ground truth (measure RMSE?) but it does a solid job at ignoring the outliers. Some of the other examples are a little iffy, so its not a perfect filter but its okay.
 
-<p align="center"><img src="https://raw.githubusercontent.com/onlycase/kalman-filter/master/plots/kalman.png"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/onlycase/kalman-filter/master/plots/kalman_300-1.png"/></p>
 
 
 Including a bounding box for +/- 0.5 (noise stddev), the state estimate mostly lies within this range which means the estimate still fluctuate according to the noise but it mostly ignores the outliers outside of the bounds which is good as they serve as statistical anomalies. I would like to get the state estimate to hug the ground truth more though. I would also be curious what would happen if I added more outliers.
 
-<p align="center"><img src="https://raw.githubusercontent.com/onlycase/kalman-filter/master/plots/kalman-bounds.png"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/onlycase/kalman-filter/master/plots/kalmanbounds_300-1.png"/></p>
 
 ## dependencies
 
@@ -42,25 +42,25 @@ Including a bounding box for +/- 0.5 (noise stddev), the state estimate mostly l
 
 ## to run
 
-Everything is handed through the `run.sh` script. The `-t` flag is the run type and the `-n` flag is the name to save the images as. To generate the groundtruth and measurement text files after setting the environment variables, run
-
-```bash
-./run.sh -t gen
-```
-
-To build
+Everything is handled through the `run.sh` script which should be run from this main directory. The `-t` flag is the run type and the `-n` flag is the name to save the images as. To build the C++ executable, run the following. This will build everything in a `build/` directory. 
 
 ```bash
 ./run.sh -t build
 ```
 
-To run and plot with an example name, which I like to set with DUR-NUMCYC like 400s duration with 1 cycle shown below.
+To generate the groundtruth and measurement text files after setting the environment variables, run
 
 ```bash
-./run.sh -t run -n 400-1
+./run.sh -t gen
 ```
 
-And to both build and run which I tend to avoid since its better to solely build and check for errors.
+To run and plot with an example name, which I like to set with DUR-NUMCYC like 300s duration with 1 cycle shown below.
+
+```bash
+./run.sh -t run -n 300-1
+```
+
+And to both build and run which I tend to avoid since its better to solely build and check for errors before attempting to plot data.
 
 ```bash
 ./run-sh -t all -n 400-1
