@@ -24,7 +24,7 @@ The results are as shown. To produce the two different plots, set `BOUNDS` in `t
 <p align="center"><img src="https://raw.githubusercontent.com/onlycase/kalman-filter/master/plots/kalman.png"/></p>
 
 
-Including a bounding box for +/- 0.5 (noise stddev), the state estimate mostly lies within this range which is expected, ignoring the outliers outside of the bounds. I would liek to get the state estimate to hug the ground truth more though.
+Including a bounding box for +/- 0.5 (noise stddev), the state estimate mostly lies within this range which means the estimate still fluctuate according to the noise but it mostly ignores the outliers outside of the bounds which is good as they serve as statistical anomalies. I would like to get the state estimate to hug the ground truth more though. I would also be curious what would happen if I added more outliers
 
 <p align="center"><img src="https://raw.githubusercontent.com/onlycase/kalman-filter/master/plots/kalman-bounds.png"/></p>
 
