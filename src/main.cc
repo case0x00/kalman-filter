@@ -7,7 +7,7 @@
 
 #include "kalman.h"
 
-#define DURATION    200
+//#define DURATION    200
 
 int main(int argc, char* argv[]) {
     // grab measurement and groundtruth from files

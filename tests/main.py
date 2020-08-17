@@ -3,14 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
 from textwrap import wrap
+import os
 
 if __name__ == "__main__":
 
-    # whether to plot the error bounds
-    BOUNDS=False
-
     # duration of the test
-    DUR = 200
+    DUR = int(os.environ["DUR"])
+    NUMCYC = int(os.environ["NUMCYC"])
 
     stdin_arr = []
     time = []
@@ -21,8 +20,8 @@ if __name__ == "__main__":
     gt = []
 
     # for generating the upper and lower bounds
-    yu = lambda x: 2*np.sin(2*np.pi*2*x/DUR)+4+0.5
-    yl = lambda x: 2*np.sin(2*np.pi*2*x/DUR)+4-0.5
+    yu = lambda x: 2*np.sin(2*np.pi*NUMCYC*x/DUR)+4+0.5
+    yl = lambda x: 2*np.sin(2*np.pi*NUMCYC*x/DUR)+4-0.5
 
     for i in range(DUR):
         gtu.append(yu(i+1))
@@ -47,21 +46,29 @@ if __name__ == "__main__":
         gt.append(float(stdin_arr[3].strip("\n")))
 
 
+    # plotting non-bounds plot 
     plt.scatter(time, zk, color="g", marker="x")
     plt.plot(time, xhat, color="r")
     plt.plot(time, gt, color="b")
     plt.xlabel("time (s)")
     plt.ylabel("position")
     plt.title("Kalman Filter State Estimation of\n%s" % "\n".join(wrap("Sinusoidal Waveform with Gaussian Noise", width=60)))
+    plt.legend((["state estimate", "ground truth", "state measurement"]))
+    plt.savefig("plots/kalman_{}.png".format(sys.argv[1]))
+#    plt.show()
 
-    if BOUNDS:
-        plt.plot(time, gtu, color="b", linestyle=":", markersize=8)
-        plt.plot(time, gtl, color="b", linestyle=":",  markersize=8)
-        plt.legend(["state estimate","ground truth", "upper bound (+0.5)", "lower bound (-0.5)", "state measurement"])
-        plt.savefig("plots/kalman-bounds.png")
-    else:
-        plt.legend((["state estimate", "ground truth", "state measurement"]))
-        plt.savefig("plots/kalman.png")
+    # plotting bounded plot
+    plt.clf()
+    plt.scatter(time, zk, color="g", marker="x")
+    plt.plot(time, xhat, color="r")
+    plt.plot(time, gt, color="b")
+    plt.plot(time, gtu, color="b", linestyle=":", markersize=8)
+    plt.plot(time, gtl, color="b", linestyle=":",  markersize=8)
+    plt.xlabel("time (s)")
+    plt.ylabel("position")
+    plt.title("Kalman Filter State Estimation of\n%s" % "\n".join(wrap("Sinusoidal Waveform with Gaussian Noise", width=60)))
+    plt.legend(["state estimate","ground truth", "upper bound (+0.5)", "lower bound (-0.5)", "state measurement"])
+    plt.savefig("plots/kalmanbounds_{}.png".format(sys.argv[1]))
 
     # dont need to show() but whatever
-    plt.show()
+#    plt.show()

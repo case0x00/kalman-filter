@@ -2,12 +2,18 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 import sys
+import os
 
 if __name__ == "__main__":
 
-    DUR = 200 
-    NUMCYC=2
-
+#    DUR = 200 
+#    NUMCYC=2
+    
+    DUR = int(os.environ["DUR"])
+    NUMCYC = int(os.environ["NUMCYC"])
+#    DUR = 400
+#    NUMCYC=4
+    
     measurement = []
     groundtruth = []
 
