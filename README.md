@@ -18,11 +18,15 @@ y = lambda x : 2 * np.sin(2 * np.sin * NUMCYC * x / DUR) + 4
 
 where `NUMCYC` is the number of full cycles (periods) present.
 
-The results are as shown. It doesn't perfectly estimate the state as evident of the deviation from the ground truth (measure RMSE?) but it does a solid job at ignoring the outliers.
+The results are as shown. To produce the two different plots, set `BOUNDS` in `tests/main.py` to either `True` or `False`. It doesn't perfectly estimate the state as evident of the deviation from the ground truth (measure RMSE?) but it does a solid job at ignoring the outliers.
 
 
 <p align="center"><img src="https://raw.githubusercontent.com/onlycase/kalman-filter/master/plots/kalman.png"/></p>
 
+
+Including a bounding box for +/- 0.5 (noise stddev), the state estimate mostly lies within this range which is expected, ignoring the outliers outside of the bounds. I would liek to get the state estimate to hug the ground truth more though.
+
+<p align="center"><img src="https://raw.githubusercontent.com/onlycase/kalman-filter/master/plots/kalman-bounds.png"/></p>
 
 ## dependencies
 

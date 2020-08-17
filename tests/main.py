@@ -6,11 +6,28 @@ from textwrap import wrap
 
 if __name__ == "__main__":
 
+    # whether to plot the error bounds
+    BOUNDS=False
+
+    # duration of the test
+    DUR = 200
+
     stdin_arr = []
     time = []
     zk = []
     xhat = []
+    gtu = []
+    gtl = []
     gt = []
+
+    # for generating the upper and lower bounds
+    yu = lambda x: 2*np.sin(2*np.pi*2*x/DUR)+4+0.5
+    yl = lambda x: 2*np.sin(2*np.pi*2*x/DUR)+4-0.5
+
+    for i in range(DUR):
+        gtu.append(yu(i+1))
+        gtl.append(yl(i+1))
+
 
     for line in sys.stdin:
 
@@ -36,8 +53,15 @@ if __name__ == "__main__":
     plt.xlabel("time (s)")
     plt.ylabel("position")
     plt.title("Kalman Filter State Estimation of\n%s" % "\n".join(wrap("Sinusoidal Waveform with Gaussian Noise", width=60)))
-    plt.legend(["state estimate","ground truth", "state measurement"])
 
+    if BOUNDS:
+        plt.plot(time, gtu, color="b", linestyle=":", markersize=8)
+        plt.plot(time, gtl, color="b", linestyle=":",  markersize=8)
+        plt.legend(["state estimate","ground truth", "upper bound (+0.5)", "lower bound (-0.5)", "state measurement"])
+        plt.savefig("plots/kalman-bounds.png")
+    else:
+        plt.legend((["state estimate", "ground truth", "state measurement"]))
+        plt.savefig("plots/kalman.png")
 
-    plt.savefig("plots/kalman.png")
-#    plt.show()
+    # dont need to show() but whatever
+    plt.show()
