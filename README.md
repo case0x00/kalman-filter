@@ -35,7 +35,10 @@ Including a bounding box for +/- 0.5 (noise stddev), the state estimate mostly l
 
 ## dependencies
 
+C++
 * Eigen
+
+Python
 * matplotlib
 * numpy
 
@@ -63,7 +66,7 @@ To run and plot with an example name, which I like to set with DUR-NUMCYC like 3
 And to both build and run which I tend to avoid since its better to solely build and check for errors before attempting to plot data.
 
 ```bash
-./run-sh -t all -n 400-1
+./run-sh -t all -n 300-1
 ```
 
 ## good resources
