@@ -1,9 +1,9 @@
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
-#import matplotlib
 from textwrap import wrap
 import os
+import seaborn
 
 if __name__ == "__main__":
 
@@ -58,10 +58,9 @@ if __name__ == "__main__":
     plt.scatter(time, zk, color="g", marker="x")
     plt.plot(time, xhat, color="r")
     plt.plot(time, gt, color="b")
-    plt.plot(time, gtu, color="b", linestyle=":", markersize=8)
-    plt.plot(time, gtl, color="b", linestyle=":",  markersize=8)
+    plt.fill_between(time, gtu, gtl, alpha=0.4)
     plt.xlabel("time (s)")
     plt.ylabel("position")
     plt.title("Kalman Filter State Estimation of\n%s" % "\n".join(wrap("Sinusoidal Waveform with Gaussian Noise", width=60)))
-    plt.legend(["state estimate","ground truth", "upper bound (+0.5)", "lower bound (-0.5)", "state measurement"])
+    plt.legend(["state estimate","ground truth", "state measurement", "confidence bounds (+/-0.5)"])
     plt.savefig("plots/kalmanbounds_{}.png".format(sys.argv[1]))
