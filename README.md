@@ -6,7 +6,7 @@ Kalman filter implemented in C++. Groundtruth was set to a sinusoidal waveform a
 
 Kalman filters consist of two parts: predicting and updating. In the prediction step, the system model is used to calculate the a priori state estimate and the error covariance. The update step uses these a priori estimates and updates them to find the posterior estimates of the state and the error covariance. the kalman gain is calculated such that it minimizes the posterior error covariance. These posterior values are fed into the prediction phase and the cycle is repeated. 
 
-<p align="center"><img src="https://raw.githubusercontent.com/onlycase/kalman-filter/master/assets/diagram.png"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/case0x00/kalman-filter/master/assets/diagram.png"/></p>
 
 
 ## method and results
@@ -26,12 +26,12 @@ y = lambda x : 2 * np.sin(2 * np.sin * NUMCYC * x / DUR) + 4
 
 Example results are shown below, with more in the `plots/` directory. Both bound and unbounded are produced for each run. It doesn't perfectly estimate the state as evident of the deviation from the ground truth (measure RMSE?) but it does a solid job at ignoring the outliers. Some of the other examples are a little iffy, so its not a perfect filter but its okay.
 
-<p align="center"><img src="https://raw.githubusercontent.com/onlycase/kalman-filter/master/plots/kalman_300-1.png"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/case0x00/kalman-filter/master/plots/kalman_300-1.png"/></p>
 
 
 Including a bounding box for +/- 0.5 (noise stddev), the state estimate mostly lies within this range which means the estimate still fluctuate according to the noise but it mostly ignores the outliers outside of the bounds which is good as they serve as statistical anomalies. I would like to get the state estimate to hug the ground truth more though. I would also be curious what would happen if I added more outliers.
 
-<p align="center"><img src="https://raw.githubusercontent.com/onlycase/kalman-filter/master/plots/kalmanbounds_300-1.png"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/case0x00/kalman-filter/master/plots/kalmanbounds_300-1.png"/></p>
 
 ## dependencies
 
